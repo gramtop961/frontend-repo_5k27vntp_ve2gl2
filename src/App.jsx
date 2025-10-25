@@ -1,28 +1,44 @@
-import { useState } from 'react'
+import Header from './components/Header'
+import HelloMessage from './components/HelloMessage'
+import FeatureCard from './components/FeatureCard'
+import Footer from './components/Footer'
+import { Rocket, Star, Settings } from 'lucide-react'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const features = [
+    {
+      title: 'Fast & Modern',
+      description: 'Vite-powered React app with instant hot reloads and optimized builds.',
+      icon: Rocket,
+    },
+    {
+      title: 'Beautiful by Default',
+      description: 'Tailwind CSS utilities for effortless styling and responsive layouts.',
+      icon: Star,
+    },
+    {
+      title: 'Ready to Extend',
+      description: 'Clean, component-based structure so you can add features quickly.',
+      icon: Settings,
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-indigo-50">
+      <div className="max-w-6xl mx-auto px-6">
+        <Header />
+        <HelloMessage />
+
+        <section id="features" className="py-8 sm:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f) => (
+              <FeatureCard key={f.title} title={f.title} description={f.description} icon={f.icon} />
+            ))}
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </div>
   )
 }
-
-export default App
